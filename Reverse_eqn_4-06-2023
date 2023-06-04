@@ -1,0 +1,30 @@
+  bool isoperator(char ch){
+        return (ch == '+' || ch == '*' || ch == '/' || ch == '-');
+    }
+  
+    string reverseEqn (string s)
+        {
+            stack<string>st;
+             string temp = "";
+            for( int i = 0 ; i < s.size() ; i++){
+                 if( i == s.size() - 1){
+                     temp += s[i];
+                     st.push(temp);
+                 }
+                if(!isoperator(s[i])){
+                    temp += s[i];
+                    continue;
+                }
+                st.push(temp);
+                temp = s[i];
+                st.push(temp);
+                temp = "";
+            }
+             
+             string ans = "";
+            while( !st.empty()){
+                ans += st.top();
+                st.pop();
+            }
+            return ans;
+        }
